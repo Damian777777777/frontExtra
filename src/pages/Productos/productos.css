@@ -1,0 +1,107 @@
+.page-container {
+  padding: 20px;
+}
+
+.titulo {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+/* Botones */
+.btn-primary,
+.btn-warning,
+.btn-danger,
+.btn-secondary,
+.btn-activo,
+.btn-inactivo {
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  margin-right: 8px;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-warning {
+  background: #ffc107;
+  color: black;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-activo {
+  background: #28a745;
+  color: white;
+}
+
+.btn-inactivo {
+  background: #6c757d;
+  color: white;
+}
+
+/* Tabla */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.styled-table th {
+  background: #f4f4f4;
+}
+
+/* MODAL */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-card {
+  background: white;
+  padding: 25px;
+  width: 400px;
+  border-radius: 12px;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+/* Checkbox */
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

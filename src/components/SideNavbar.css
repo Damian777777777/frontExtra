@@ -1,0 +1,8 @@
+.side-navbar {
+  width: 220px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 56px; /* Altura del top navbar */
+  background-color: #162840;
+}
