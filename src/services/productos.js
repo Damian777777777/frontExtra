@@ -1,13 +1,54 @@
 const URL = "http://localhost:8081/api/productos";
 
+// ==============================
+// HEADERS CON JWT
+// ==============================
+function getAuthHeaders() {
+  const token = localStorage.getItem("token");
+  return {
+    "Content-Type": "application/json",
+    ...(token && { Authorization: `Bearer ${token}` }),
+  };
+}
+
+// ==============================
+// MANEJO DE RESPUESTAS
+// ==============================
+async function handleResponse(response) {
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Error ${response.status}: ${text || response.statusText}`);
+  }
+
+  // Si la respuesta no tiene body
+  if (response.status === 204) return null;
+
+  return response.json();
+}
+
+// ==============================
+// GET ALL
+// ==============================
 export async function getProductos() {
-  return fetch(URL).then((r) => r.json());
+  const response = await fetch(URL, {
+    headers: getAuthHeaders(),
+  });
+  return handleResponse(response);
 }
 
+// ==============================
+// GET BY ID
+// ==============================
 export async function getProducto(id) {
-  return fetch(`${URL}/${id}`).then((r) => r.json());
+  const response = await fetch(`${URL}/${id}`, {
+    headers: getAuthHeaders(),
+  });
+  return handleResponse(response);
 }
 
+// ==============================
+// CREATE / UPDATE
+// ==============================
 export async function saveProducto(data, id) {
   const body = {
     codigo: data.codigo,
@@ -19,27 +60,44 @@ export async function saveProducto(data, id) {
     activo: data.activo,
   };
 
-  if (!id) {
-    return fetch(URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    }).then((r) => r.json());
-  }
-
-  return fetch(`${URL}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
+  const response = await fetch(id ? `${URL}/${id}` : URL, {
+    method: id ? "PUT" : "POST",
+    headers: getAuthHeaders(),
     body: JSON.stringify(body),
-  }).then((r) => r.json());
+  });
+
+  return handleResponse(response);
 }
 
+// ==============================
+// DELETE
+// ==============================
 export async function deleteProducto(id) {
-  return fetch(`${URL}/${id}`, { method: "DELETE" });
+  const response = await fetch(`${URL}/${id}`, {
+    method: "DELETE",
+    headers: getAuthHeaders(),
+  });
+
+  return handleResponse(response);
 }
 
-export const activarProducto = (id) =>
-  fetch(`${URL}/${id}/activar`, { method: "PUT" }).then((r) => r.json());
+// ==============================
+// ACTIVAR / DESACTIVAR
+// ==============================
+export async function activarProducto(id) {
+  const response = await fetch(`${URL}/${id}/activar`, {
+    method: "PUT",
+    headers: getAuthHeaders(),
+  });
 
-export const desactivarProducto = (id) =>
-  fetch(`${URL}/${id}/desactivar`, { method: "PUT" }).then((r) => r.json());
+  return handleResponse(response);
+}
+
+export async function desactivarProducto(id) {
+  const response = await fetch(`${URL}/${id}/desactivar`, {
+    method: "PUT",
+    headers: getAuthHeaders(),
+  });
+
+  return handleResponse(response);
+}

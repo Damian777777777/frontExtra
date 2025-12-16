@@ -1,0 +1,78 @@
+/* Contenedor general centrado */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Título */
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #1E4F8E;
+  font-weight: 700;
+}
+
+/* Inputs */
+.login-container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.login-container input:focus {
+  border-color: #40C8FF;
+  outline: none;
+}
+
+/* Botón principal */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #40C8FF;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #016EC2;
+}
+
+/* Mensaje de error */
+.error {
+  color: #ff4d4f;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Link para alternar login/registro */
+.toggle-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #1E4F8E;
+}
+
+.toggle-link span {
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.toggle-link span:hover {
+  color: #40C8FF;
+}

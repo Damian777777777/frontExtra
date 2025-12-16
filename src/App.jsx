@@ -7,22 +7,72 @@ import ProductosPage from "./pages/Productos/page";
 import CategoriasPage from "./pages/Categorias/page";
 import InventarioPage from "./pages/Inventario/page";
 import MovimientosPage from "./pages/Movimientos/page";
+import LoginPage from "./pages/login/LoginPage";
+
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <TopNavbar />
-      <SideNavbar />
+      <Routes>
+        {/* Ruta pública: login */}
+        <Route path="/login" element={<LoginPage />} />
 
-      <div style={{ marginLeft: "220px", padding: "20px", marginTop: "56px" }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/inventario" element={<InventarioPage />} />
-          <Route path="/productos" element={<ProductosPage />} />
-          <Route path="/categorias" element={<CategoriasPage />} />
-          <Route path="/movimientos" element={<MovimientosPage />} />
-        </Routes>
-      </div>
+        {/* Rutas protegidas */}
+        <Route
+          path="/*"
+          element={
+            <>
+              <TopNavbar />
+              <SideNavbar />
+              <div style={{ marginLeft: "220px", padding: "20px", marginTop: "56px" }}>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <PrivateRoute>
+                        <Home />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/inventario"
+                    element={
+                      <PrivateRoute>
+                        <InventarioPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/productos"
+                    element={
+                      <PrivateRoute>
+                        <ProductosPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/categorias"
+                    element={
+                      <PrivateRoute>
+                        <CategoriasPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/movimientos"
+                    element={
+                      <PrivateRoute>
+                        <MovimientosPage />
+                      </PrivateRoute>
+                    }
+                  />
+                </Routes>
+              </div>
+            </>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }
